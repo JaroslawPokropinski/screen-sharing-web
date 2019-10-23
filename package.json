@@ -4,6 +4,7 @@
   "description": "Application for screen sharing using web technologies",
   "scripts": {
     "start": "node dist/index.js",
+    "build": "npm run build-ts && cd frontend && npm i && npm run build",
     "build-ts": "tsc",
     "watch": "concurrently \"npm:watch-ts\" \"npm:watch-node\"",
     "watch-ts": "tsc -w",
