@@ -10,7 +10,7 @@
     "watch-node": "nodemon dist/index.js",
     "watch-test": "npm run test -- --watchAll",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
-    "test": "jest --forceExit --coverage --verbose"
+    "test": "jest --forceExit --coverage --verbose --passWithNoTests"
   },
   "repository": {
     "type": "git",
