@@ -1,0 +1,26 @@
+/* Place global styles here */
+/* bring in normalize.css styles */
+@import-normalize;
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+:root {
+  --background-color: #293462;
+  --primary-color: #216583;
+  --secondary-color: #00818a;
+  --secondary-color2: #f7be16;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--background-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+html {
+  height: 100vh;
+}
