@@ -4,6 +4,7 @@ FROM node:10
 WORKDIR /usr/src/app
 
 RUN npm install -g parcel-bundler
+RUN npm install -g typescript
 
 
 COPY package*.json ./
