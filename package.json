@@ -25,6 +25,7 @@
   "homepage": "https://github.com/JaroslawPokropinski/screen-sharing-web#readme",
   "devDependencies": {
     "@types/express": "^4.17.1",
+    "@types/node": "^12.11.5",
     "concurrently": "^5.0.0",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
