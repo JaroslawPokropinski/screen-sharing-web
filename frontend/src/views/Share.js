@@ -44,7 +44,7 @@ class Share extends React.Component {
       });
     });
 
-    navigator.mediaDevices.getDisplayMedia({ video: true })
+    navigator.mediaDevices.getDisplayMedia({ video: { width: 1280, height: 720 } })
       .then((mediaStream) => {
         this.videoRef.current.srcObject = mediaStream;
         this.videoRef.current.play();
