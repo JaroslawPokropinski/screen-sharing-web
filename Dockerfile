@@ -8,7 +8,7 @@ RUN npm install -g typescript
 
 
 COPY package*.json ./
-RUN npm i --production
+RUN npm i
 COPY . .
 RUN npm run build
 
