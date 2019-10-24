@@ -1,7 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 
+const Video = styled.video`
+  width: 100vw;
+`;
 
 class Watch extends React.Component {
   constructor() {
@@ -23,7 +27,14 @@ class Watch extends React.Component {
       call.on('stream', (incoming) => {
         if (this.videoRef.current !== null) {
           this.videoRef.current.srcObject = incoming;
-          this.videoRef.current.play();
+          if (incoming.active) {
+            this.videoRef.current.play();
+          } else {
+            incoming.onaddtrack = () => {
+              this.videoRef.current.play();
+            }
+          }
+
         }
         toast.info('Connected');
       });
@@ -36,7 +47,7 @@ class Watch extends React.Component {
 
   render() {
     return <div>
-      <video ref={this.videoRef} />
+      <Video ref={this.videoRef} />
     </div>
   }
 }
