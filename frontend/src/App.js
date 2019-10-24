@@ -11,6 +11,7 @@ import Peer from './peerjs';
 import { setPeer, setSession } from './actions/sessionActions';
 import Share from './views/Share';
 import Watch from './views/Watch';
+import Root from './views/Root';
 
 
 const Container = styled.div`
@@ -66,6 +67,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/watch/:id" component={Watch} />
           <Route exact path="/share" component={Share} />
+          <Route exact path="/" component={Root} />
           <Route>
             404
           </Route>
