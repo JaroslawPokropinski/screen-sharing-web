@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import { Session } from '../reducers/sessionReducer';
 import { RouteComponentProps } from 'react-router';
+import TextField from '../components/CopyTextField';
 
 const Flex = styled.div`
   display: flex;
@@ -54,8 +55,8 @@ class Share extends React.Component<ShareProps> {
           }
         });
 
-        conn.on('error', (error) => {
-          toast.error(error);
+        conn.on('error', () => {
+          console.error('Connection with peer was broken');
         });
       });
 
@@ -69,8 +70,8 @@ class Share extends React.Component<ShareProps> {
             toast.error('No video tag reference!');
           }
         })
-        .catch((err) => {
-          toast.error(err);
+        .catch(() => {
+          toast.error('Failed to get video recording');
         });
     }
   }
@@ -83,8 +84,13 @@ class Share extends React.Component<ShareProps> {
       <Flex>
         <Container>
           <Text>You are sharing video.</Text>
-          <Text>Id: {id}</Text>
-          <Text>Url: {`${url}/${id}`}</Text>
+          <TextField tag='Id' value={id} copy={true} />
+          <TextField
+            tag='Url'
+            value={`${url}/${id}`}
+            copy={true}
+            onCopy={() => toast('Copied to clipboard.')}
+          />
           <Video ref={this.videoRef} />
         </Container>
       </Flex>
