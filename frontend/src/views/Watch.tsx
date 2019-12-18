@@ -42,6 +42,7 @@ class Watch extends React.Component<WatchProps> {
           call.answer();
 
           call.on('stream', (incoming: MediaStream) => {
+            console.log(this);
             if (this.videoRef.current !== null) {
               this.videoRef.current.srcObject = incoming;
               if (incoming.active) {
@@ -72,7 +73,7 @@ class Watch extends React.Component<WatchProps> {
   render() {
     return (
       <div>
-        <Video ref={this.videoRef} />
+        <Video ref={this.videoRef} muted />
       </div>
     );
   }
