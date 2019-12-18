@@ -7,7 +7,7 @@ import { Client } from 'peer';
 
 const app = express();
 
-app.get('/', (_req: Request, res: Response) => {
+app.get(['/', '/index.html'], (_req: Request, res: Response) => {
   res.redirect('/app/');
 });
 app.use(express.static(path.join(__dirname, '../frontend/dist')));

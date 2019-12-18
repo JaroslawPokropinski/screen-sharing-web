@@ -2,6 +2,7 @@
   "name": "screen-sharing-web",
   "version": "0.0.1",
   "description": "Application for screen sharing using web technologies",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "npm run watch",
@@ -32,12 +33,16 @@
     "concurrently": "^5.0.0",
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "peer": "git+https://github.com/peers/peerjs-server.git",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "optimist": "~0.6.1",
+    "ws": "^7.1.2"
   }
 }

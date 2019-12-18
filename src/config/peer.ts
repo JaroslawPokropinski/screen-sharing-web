@@ -1,4 +1,4 @@
-import { ExpressPeerServer } from 'peer';
+import { ExpressPeerServer } from '../../lib/peer/src';
 import { Express } from 'express';
 import http from 'http';
 import https from 'https';
