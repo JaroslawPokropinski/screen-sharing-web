@@ -2,8 +2,7 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 
 import log from './config/logger';
-import PeerBroker from './config/peer';
-import { Client } from 'peer';
+import PeerBroker, { Client } from './config/peer';
 
 const app = express();
 

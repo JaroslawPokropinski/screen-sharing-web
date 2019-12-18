@@ -47,3 +47,5 @@ export default class PeerBroker {
     return peerjs;
   }
 }
+
+export { Client } from '../../lib/peer/src';
