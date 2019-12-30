@@ -1,26 +1,15 @@
 import Peer from 'peerjs';
 
 class MyPeer extends Peer {
-  constructor(isProd: boolean) {
-    if (isProd) {
-      super({
-        host: 'versity-project.herokuapp.com',
-        path: '/myapp',
-        port: 443,
-        secure: true,
-        key: 'peerjs',
-        debug: 0,
-      });
-    } else {
-      super({
-        host: '127.0.0.1',
-        path: '/myapp',
-        port: 9000,
-        secure: false,
-        key: 'peerjs',
-        debug: 3,
-      });
-    }
+  constructor(_isProd: boolean) {
+    super({
+      host: 'screen-sharing-web.herokuapp.com',
+      path: '/myapp',
+      port: 443,
+      secure: true,
+      key: 'peerjs',
+      debug: 0,
+    });
   }
 }
 
