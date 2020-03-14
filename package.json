@@ -1,6 +1,6 @@
 {
   "name": "screen-sharing-web",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Application for screen sharing using web technologies",
   "main": "dist/index.js",
   "scripts": {
@@ -26,23 +26,23 @@
   },
   "homepage": "https://github.com/JaroslawPokropinski/screen-sharing-web#readme",
   "devDependencies": {
-    "@types/express": "^4.17.1",
+    "@types/express": "^4.17.3",
     "@types/node": "^12.11.5",
-    "@typescript-eslint/eslint-plugin": "^2.5.0",
-    "@typescript-eslint/parser": "^2.5.0",
-    "concurrently": "^5.0.0",
-    "eslint": "^6.5.1",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.8.3"
   },
   "dependencies": {
+    "acorn": "^7.1.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "winston": "^3.2.1",
-    "optimist": "~0.6.1",
-    "ws": "^7.1.2"
+    "ws": "^7.2.3"
   }
 }
