@@ -34,7 +34,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "class-autobind": "^0.1.4",
     "peerjs": "^1.2.0",
     "prop-types": "^15.7.2",
