@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import autobind from 'class-autobind';
-import { RouteComponentProps } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const Flex = styled.div`
   display: flex;
@@ -89,46 +88,34 @@ const Label = (props: { first?: number; value: string }) => (
   </LabelFlex>
 );
 
-type RootState = {
-  value: string;
-};
+const Root = () => {
+  const navigate = useNavigate();
+  const [value, setValue] = React.useState('');
 
-class Root extends React.Component<RouteComponentProps, RootState> {
-  constructor(props: RouteComponentProps) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-    autobind(this);
+  const onJoin = () => {
+    navigate(`/watch/${value}`);
   }
 
-  onJoin() {
-    this.props.history.push(`/watch/${this.state.value}`);
+  const onCreate = () => {
+    navigate(`/share`);
   }
 
-  onCreate() {
-    this.props.history.push('/share');
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setValue(event.currentTarget.value);
   }
 
-  handleChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({ value: event.currentTarget.value });
-  }
+  return <form onSubmit={(e) => e.preventDefault()}>
+    <Flex>
+      <Container>
+        <Label first={1} value='Watch someone' />
+        <Input value={value} onChange={handleChange} />
+        <Submit type='button' value='Watch' onClick={onJoin} />
+        <Label value='Or share your screen' />
+        <Submit type='button' value='Share' onClick={onCreate} />
+      </Container>
+    </Flex>
+  </form>
 
-  render() {
-    return (
-      <form onSubmit={(e) => e.preventDefault()}>
-        <Flex>
-          <Container>
-            <Label first={1} value='Watch someone' />
-            <Input value={this.state.value} onChange={this.handleChange} />
-            <Submit type='button' value='Watch' onClick={this.onJoin} />
-            <Label value='Or share your screen' />
-            <Submit type='button' value='Share' onClick={this.onCreate} />
-          </Container>
-        </Flex>
-      </form>
-    );
-  }
 }
 
 export default Root;

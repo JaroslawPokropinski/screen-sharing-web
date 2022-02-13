@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from "react-router";
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
@@ -34,7 +34,7 @@ class App extends React.Component<AppProps, AppState> {
       isPeerOpen: false,
     };
 
-    this.dismissToast = () => {};
+    this.dismissToast = () => { };
   }
 
   componentDidMount() {
@@ -76,12 +76,12 @@ class App extends React.Component<AppProps, AppState> {
         return null;
       }
       return (
-        <Switch>
-          <Route exact path='/watch/:id' component={Watch} />
-          <Route exact path='/share' component={Share} />
-          <Route exact path='/' component={Root} />
+        <Routes>
+          <Route path='/watch/:id' element={<Watch />} />
+          <Route path='/share' element={<Share />} />
+          <Route path='/' element={<Root />} />
           <Route>404</Route>
-        </Switch>
+        </Routes>
       );
     };
 

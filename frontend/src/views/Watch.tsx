@@ -1,52 +1,39 @@
 import * as React from 'react';
-import { match } from 'react-router-dom';
+import { Params, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Session } from '../reducers/sessionReducer';
+import Peer from 'peerjs';
 
 const Video = styled.video`
   width: 100vw;
 `;
 
-type Params = {
-  id: string;
-};
 
-type WatchProps = {
-  match: match<Params>;
-  session: Session;
-};
+const Watch = () => {
+  const { id } = useParams<Params<"id">>();
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const peer: Peer = useSelector((state: any) => state.session.peer)
 
-class Watch extends React.Component<WatchProps> {
-  videoRef: React.RefObject<HTMLVideoElement>;
-
-  constructor(props: WatchProps) {
-    super(props);
-    this.videoRef = React.createRef();
-  }
-
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    const { session } = this.props;
-    if (session.peer) {
-      const conn = session.peer.connect(id);
+  React.useEffect(() => {
+    if (peer && id) {
+      const conn = peer.connect(id);
       conn.on('open', () => {
-        if (session.peer) {
-          conn.send(session.peer.id);
+        if (peer) {
+          conn.send(peer.id);
         }
       });
 
-      session.peer &&
-        session.peer.on('call', (call) => {
+      peer &&
+        peer.on('call', (call) => {
           call.answer();
 
           call.on('stream', (incoming: MediaStream) => {
             console.log(this);
-            if (this.videoRef.current !== null) {
-              this.videoRef.current.srcObject = incoming;
+            if (videoRef.current !== null) {
+              videoRef.current.srcObject = incoming;
               if (incoming.active) {
-                this.videoRef.current.play();
+                videoRef.current.play();
                 incoming.getTracks().forEach((track) => {
                   track.addEventListener('ended', () => {
                     toast.info('Stream ended.');
@@ -54,8 +41,8 @@ class Watch extends React.Component<WatchProps> {
                 });
               } else {
                 incoming.onaddtrack = () => {
-                  if (this.videoRef.current) {
-                    this.videoRef.current.play();
+                  if (videoRef.current) {
+                    videoRef.current.play();
                   }
                 };
               }
@@ -68,21 +55,11 @@ class Watch extends React.Component<WatchProps> {
           });
         });
     }
-  }
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <Video ref={this.videoRef} muted />
-      </div>
-    );
-  }
+  return <div>
+    <Video ref={videoRef} muted />
+  </div>
 }
 
-const mapStateToProps = (state: { session: Session }) => ({
-  session: state.session,
-});
-
-const containerWatch = connect(mapStateToProps)(Watch);
-
-export default containerWatch;
+export default Watch;
